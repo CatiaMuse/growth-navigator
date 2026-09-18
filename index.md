@@ -86,8 +86,8 @@ A focused consultation on VoC architecture, CX metrics, customer complaints, tax
   <a href="cx-pipeline-atlas.html" target="_blank" rel="noopener noreferrer">Explore the interactive Atlas</a>
 - **6-Stage VoC / CX Framework:** Spec-Driven CX Definition → Context MCP Layer → Continuous Signal Ingestion & Triage → Hypothesis-Driven Investigation → Agentic Execution & Orchestration → Continuous Verification & Learning Loop, 2026
   <a href="six-stage-framework.html" target="_blank" rel="noopener noreferrer">Open the interactive framework</a>
-- **Webinar:** Turn Customer Voices intor the Revenue Growth, 2025 — [Watch the recording](<a href="https://youtu.be/94gFuNdQZ0E?si=6C2yN2RFzO27qg1h" target="_blank" rel="noopener noreferrer">Watch the recording on YouTube</a>).
-- **UXPressia Talk:** Unlock your VoC program’s potential with journey mapping, UXPressia, 2024 — [Read the article](<a href="https://uxpressia.com/blog/voc-programs-potential?utm_source=linkedin.com&utm_medium=social&utm_campaign=internal_mishina_new_article_16.07.2024" target="_blank" rel="noopener noreferrer">Read the article and watch the session</a>).
+- **Webinar:** Turn Customer Voices intor the Revenue Growth, 2025 — <a href="https://youtu.be/94gFuNdQZ0E?si=6C2yN2RFzO27qg1h" target="_blank" rel="noopener noreferrer">Watch the recording on YouTube</a>
+- **UXPressia Talk:** Unlock your VoC program’s potential with journey mapping, UXPressia, 2024 — <a href="https://uxpressia.com/blog/voc-programs-potential?utm_source=linkedin.com&utm_medium=social&utm_campaign=internal_mishina_new_article_16.07.2024" target="_blank" rel="noopener noreferrer">Read the article and watch the session</a>
 
 ---
 
@@ -97,4 +97,4 @@ If customer feedback is being collected but not systematically converted into be
 
 [Book a 30-minute call](mailto:katja.mshn@gmail.com)
 
-[LinkedIn](<a href="https://www.linkedin.com/in/katiamishina/" target="_blank" rel="noopener noreferrer">Caterina Mishina</a>) · Lisbon, Portugal · Available for EU, UK and international remote engagements
+<a href="https://www.linkedin.com/in/katiamishina/" target="_blank" rel="noopener noreferrer">Caterina Mishina</a> · Lisbon, Portugal · Available for EU, UK and international remote engagements
