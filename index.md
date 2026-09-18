@@ -4,7 +4,7 @@
 
 I help regulated services and companies build Voice of Customer and Customer Experience systems that convert feedback, complaints, tickets and behavioural signals into product, service and commercial decisions.
 
-[Book a 30-minute diagnostic call](mailto:[katja.mshn@gmail.com])
+[Book a 30-minute diagnostic call](mailto:katja.mshn@gmail.com)
 
 ---
 
@@ -82,8 +82,8 @@ A focused consultation on VoC architecture, CX metrics, customer complaints, tax
 
 ## Thought leadership and frameworks
 
-- **Webinar:** [Turn Customer Voices intor the Revenue Growth], [2025] — [Watch the recording]([https://youtu.be/94gFuNdQZ0E?si=6C2yN2RFzO27qg1h]).
-- **UXPressia Talk:** [Unlock your VoC program’s potential with journey mapping], [UXPressia], [2024] — [Read the article]([https://uxpressia.com/blog/voc-programs-potential?utm_source=linkedin.com&utm_medium=social&utm_campaign=internal_mishina_new_article_16.07.2024]).
+- **Webinar:** Turn Customer Voices intor the Revenue Growth, 2025 — [Watch the recording](https://youtu.be/94gFuNdQZ0E?si=6C2yN2RFzO27qg1h).
+- **UXPressia Talk:** Unlock your VoC program’s potential with journey mapping, UXPressia, 2024 — [Read the article](https://uxpressia.com/blog/voc-programs-potential?utm_source=linkedin.com&utm_medium=social&utm_campaign=internal_mishina_new_article_16.07.2024).
 - **CX Pipeline Atlas:** my map of 25 CX pipelines across five domains, showing what AI can operationalise and where human judgement remains accountable. [Explore the Atlas]([CX PIPELINE ATLAS URL]).
 - **6-Stage VoC / CX Framework:** Spec-Driven CX Definition → Context MCP Layer → Continuous Signal Ingestion & Triage → Hypothesis-Driven Investigation → Agentic Execution Orchestration → Continuous Verification & Learning Loop. [Open the framework]([SIX-STAGE FRAMEWORK URL]).
 
@@ -93,6 +93,6 @@ A focused consultation on VoC architecture, CX metrics, customer complaints, tax
 
 If customer feedback is being collected but not systematically converted into better journeys, stronger retention or clearer product decisions, a diagnostic is the fastest place to start.
 
-[Book a 30-minute call](mailto:[katja.mshn@gmail.com])
+[Book a 30-minute call](mailto:katja.mshn@gmail.com)
 
-LinkedIn: [https://www.linkedin.com/in/katiamishina] · Lisbon, Portugal · Available for EU, UK and international remote engagements
+[LinkedIn:](https://www.linkedin.com/in/katiamishina) · Lisbon, Portugal · Available for EU, UK and international remote engagements
