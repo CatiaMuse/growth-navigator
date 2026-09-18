@@ -1,24 +1,24 @@
-# VoC & AI-CX Advisory for Fintech and B2B SaaS
+# VoC & AI-CX Advisory for Regulated Services (fintech, medtech, insurtech)
 
-**Turn customer signals into decisions, journeys and revenue.**
+**Turn customer signals into decisions, journeys and revenue**
 
-I help fintech and B2B SaaS companies build Voice of Customer and Customer Experience systems that convert feedback, complaints, tickets and behavioural signals into product, service and commercial decisions.
+I help regulated services and companies build Voice of Customer and Customer Experience systems that convert feedback, complaints, tickets and behavioural signals into product, service and commercial decisions.
 
-[Book a 30-minute diagnostic call](mailto:[YOUR EMAIL])
+[Book a 30-minute diagnostic call](mailto:[katja.mshn@gmail.com])
 
 ---
 
 ## The problem
 
-Most companies do not lack customer data. They lack a reliable way to turn it into action.
+Most companies do not lack customer data. They lack a reliable way to turn it into action
 
-- NPS, CSAT and CES live in disconnected surveys and dashboards.
-- Complaints, disputes, support tickets and reviews are managed as separate operational queues.
-- Teams see scores but not root causes, owners or financial impact.
-- CX becomes a reporting function rather than a driver of journey and product change.
-- AI pilots multiply, but classification, governance and trust in outputs remain unclear.
+- NPS, CSAT and CES live in disconnected surveys and dashboards,
+- Complaints, disputes, support tickets and reviews are managed as separate operational queues,
+- Teams see scores but not root causes, owners or financial impact,
+- CX becomes a reporting function rather than a driver of journey and product change,
+- AI pilots multiply, but classification, governance and trust in outputs remain unclear
 
-The result: recurring friction stays unresolved, and leadership cannot connect CX to retention, cost-to-serve or growth.
+The result: recurring friction stays unresolved, and leadership cannot connect CX to retention, cost-to-serve or growth
 
 ---
 
@@ -26,11 +26,11 @@ The result: recurring friction stays unresolved, and leadership cannot connect C
 
 I use a five-part operating model:
 
-1. **Full-spectrum signal capture** — unify surveys, complaints, disputes, tickets, reviews, interviews and frontline knowledge.
-2. **Decision-grade taxonomy** — classify signals by journey, root cause, customer impact and business ownership.
-3. **Analysis and prioritisation** — identify the experience gaps that materially affect retention, effort, risk or cost-to-serve.
-4. **Closed-loop action** — assign owners, connect functions and track decisions through to measurable change.
-5. **CX-to-P&L linkage** — translate insight into retention, deflection, effort, conversion and revenue outcomes.
+1. **Full-spectrum signal capture** — unify surveys, complaints, disputes, tickets, reviews, interviews and frontline knowledge
+2. **Decision-grade taxonomy** — classify signals by journey, root cause, customer impact and business ownership
+3. **Analysis and prioritisation** — identify the experience gaps that materially affect retention, effort, risk or cost-to-serve
+4. **Closed-loop action** — assign owners, connect functions and track decisions through to measurable change
+5. **CX-to-P&L linkage** — translate insight into retention, deflection, effort, conversion and revenue outcomes
 
 ---
 
@@ -72,18 +72,18 @@ A focused consultation on VoC architecture, CX metrics, customer complaints, tax
 
 ## Selected proof points
 
-- Built an NPS programme from zero for a BNPL fintech serving more than 10 million users across three markets.
-- Helped turn a corrected CX metric into an investor-facing KPI in a $200M debt round.
-- Reduced Customer Effort Score by 30% through B2B SaaS onboarding redesign.
-- Designed AI-assisted VoC architecture and production-ready feedback taxonomies for fintech and insurtech teams.
-- Built CX governance and executive reporting connecting customer evidence to operating and P&L decisions.
+- Built an NPS programme from zero for a BNPL fintech serving more than 10 million users across three markets,
+- Helped turn a corrected CX metric into an investor-facing KPI in a $200M debt round,
+- Reduced Customer Effort Score by 30% through B2B SaaS onboarding redesign,
+- Designed AI-assisted VoC architecture and production-ready feedback taxonomies for fintech and insurtech teams,
+- Built CX governance and executive reporting connecting customer evidence to operating and P&L decisions 
 
 ---
 
 ## Thought leadership and frameworks
 
-- **Conference talk:** [TALK TITLE], [EVENT / CONFERENCE], [YEAR] — [Watch the recording]([YOUTUBE TALK URL]).
-- **Partner-platform feature:** [ARTICLE TITLE], [PARTNER PLATFORM], [YEAR] — [Read the article]([PARTNER ARTICLE URL]).
+- **Webinar:** [Turn Customer Voices intor the Revenue Growth], [2025] — [Watch the recording]([https://youtu.be/94gFuNdQZ0E?si=6C2yN2RFzO27qg1h]).
+- **UXPressia Talk:** [Unlock your VoC program’s potential with journey mapping], [UXPressia], [2024] — [Read the article]([https://uxpressia.com/blog/voc-programs-potential?utm_source=linkedin.com&utm_medium=social&utm_campaign=internal_mishina_new_article_16.07.2024]).
 - **CX Pipeline Atlas:** my map of 25 CX pipelines across five domains, showing what AI can operationalise and where human judgement remains accountable. [Explore the Atlas]([CX PIPELINE ATLAS URL]).
 - **6-Stage VoC / CX Framework:** Spec-Driven CX Definition → Context MCP Layer → Continuous Signal Ingestion & Triage → Hypothesis-Driven Investigation → Agentic Execution Orchestration → Continuous Verification & Learning Loop. [Open the framework]([SIX-STAGE FRAMEWORK URL]).
 
@@ -93,6 +93,6 @@ A focused consultation on VoC architecture, CX metrics, customer complaints, tax
 
 If customer feedback is being collected but not systematically converted into better journeys, stronger retention or clearer product decisions, a diagnostic is the fastest place to start.
 
-[Book a 30-minute call](mailto:[YOUR EMAIL])
+[Book a 30-minute call](mailto:[katja.mshn@gmail.com])
 
-Lisbon, Portugal · Available for EU, UK and international remote engagements
+LinkedIn: [https://www.linkedin.com/in/katiamishina] · Lisbon, Portugal · Available for EU, UK and international remote engagements
