@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 6-Stage CX Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #13131a;
+    --paper: #f4f1ea;
+    --paper-warm: #ebe5d8;
+    --rule: #2a2a33;
+    --accent: #c8461e;
+    --accent-soft: #e87451;
+    --moss: #3d4f2e;
+    --gold: #b8941f;
+    --muted: #6b6a65;
+    --hair: rgba(19, 19, 26, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter Tight', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(200, 70, 30, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(61, 79, 46, 0.04) 0%, transparent 40%);
+    min-height: 100vh;
+  }
+
+  .grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.1 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 60px 48px 120px;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 12px 0;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .masthead .center { color: var(--ink); font-weight: 700; }
+
+  /* ============ HERO ============ */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 96px;
+    align-items: end;
+  }
+
+  .hero-left h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+
+  .hero-left h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero-left h1 .small {
+    display: block;
+    font-size: 0.38em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-top: 12px;
+    font-family: 'Fraunces', serif;
+  }
+
+  .hero-right {
+    padding-bottom: 20px;
+  }
+
+  .hero-deck {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 520px;
+  }
+
+  .hero-subdeck {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 480px;
+  }
+
+  .hero-meta {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hair);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta span strong {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  /* ============ PREMISE ============ */
+  .premise {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 64px;
+    margin: 0 -48px 96px;
+    position: relative;
+  }
+
+  .premise::before {
+    content: '§';
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 48px;
+    color: var(--accent-soft);
+    opacity: 0.4;
+  }
+
+  .premise-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 20px;
+  }
+
+  .premise-text {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.35;
+    max-width: 860px;
+  }
+
+  .premise-text em {
+    font-style: italic;
+    color: var(--accent-soft);
+    font-weight: 400;
+  }
+
+  /* ============ STAGES ============ */
+  .stages-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .stages-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 64px;
+    max-width: 680px;
+  }
+
+  .stages-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .stage {
+    margin-bottom: 88px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 48px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.6s ease-out forwards;
+  }
+
+  .stage:nth-child(3) { animation-delay: 0.05s; }
+  .stage:nth-child(4) { animation-delay: 0.15s; }
+  .stage:nth-child(5) { animation-delay: 0.25s; }
+  .stage:nth-child(6) { animation-delay: 0.35s; }
+  .stage:nth-child(7) { animation-delay: 0.45s; }
+  .stage:nth-child(8) { animation-delay: 0.55s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stage-marker {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+
+  .stage-number {
+    font-family: 'Fraunces', serif;
+    font-size: 88px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.85;
+    color: var(--accent);
+  }
+
+  .stage-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 20px;
+    line-height: 1.4;
+  }
+
+  .stage-body {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+
+  .stage-title {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+
+  .stage-analog {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 28px;
+  }
+
+  .stage-lede {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    max-width: 760px;
+  }
+
+  .stage-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 32px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stage-section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .stage-body p {
+    margin-bottom: 16px;
+    max-width: 780px;
+  }
+
+  .stage-body ul {
+    list-style: none;
+    max-width: 780px;
+    margin-bottom: 16px;
+  }
+
+  .stage-body ul li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 10px;
+  }
+
+  .stage-body ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+  }
+
+  .stage-body ul li strong {
+    font-weight: 600;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    background: var(--paper-warm);
+    padding: 2px 6px;
+    border-radius: 2px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  em.inline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .why-box {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: var(--paper-warm);
+    border-left: 3px solid var(--accent);
+    max-width: 780px;
+  }
+
+  .why-box strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .why-box span {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ============ CYCLE DIAGRAM ============ */
+  .cycle-section {
+    margin: 100px 0;
+    padding: 64px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cycle-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .cycle-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .cycle-header h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .cycle-header p {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .cycle-svg-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cycle-svg-wrap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ============ ROLE SECTION ============ */
+  .role-section {
+    margin-top: 96px;
+    padding: 56px 64px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    margin: 96px -48px 0;
+  }
+
+  .role-section::before {
+    content: 'SENIOR CX MANAGER';
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--accent-soft);
+    opacity: 0.7;
+  }
+
+  .role-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 14px;
+  }
+
+  .role-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+
+  .role-section h2 em {
+    font-style: italic;
+    color: var(--accent-soft);
+  }
+
+  .role-lede {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: rgba(244, 241, 234, 0.75);
+    margin-bottom: 40px;
+    font-style: italic;
+    max-width: 720px;
+  }
+
+  .role-table {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+
+  .role-row {
+    display: contents;
+  }
+
+  .role-row > div {
+    padding: 18px 24px 18px 0;
+    border-top: 1px solid rgba(244, 241, 234, 0.12);
+  }
+
+  .role-row:last-child > div {
+    border-bottom: 1px solid rgba(244, 241, 234, 0.12);
+  }
+
+  .role-zone {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent-soft);
+  }
+
+  .role-what {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--paper);
+  }
+
+  .closing {
+    margin-top: 32px;
+    padding: 28px 32px;
+    background: rgba(200, 70, 30, 0.15);
+    border-left: 3px solid var(--accent-soft);
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--paper);
+  }
+
+  .closing strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-soft);
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .tech-lead-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+  }
+
+  .tech-lead-list li {
+    padding: 8px 0;
+    font-size: 16px;
+    font-style: normal;
+    border-bottom: 1px dashed rgba(244, 241, 234, 0.15);
+  }
+
+  .tech-lead-list li:last-child { border-bottom: none; }
+
+  .tech-lead-list li::before {
+    content: '—';
+    color: var(--accent-soft);
+    margin-right: 10px;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 860px) {
+    .container { padding: 32px 24px 80px; }
+    .hero { grid-template-columns: 1fr; gap: 32px; }
+    .hero-right { padding-bottom: 0; }
+    .premise, .role-section { margin-left: -24px; margin-right: -24px; padding: 40px 32px; }
+    .stage { grid-template-columns: 1fr; gap: 20px; }
+    .stage-marker { border-top: none; padding-top: 0; display: flex; align-items: baseline; gap: 20px; }
+    .stage-number { font-size: 56px; }
+    .stage-tag { margin-top: 0; }
+    .stage-title { font-size: 32px; }
+    .stages-title { font-size: 32px; }
+    .cycle-header h2, .role-section h2 { font-size: 32px; }
+    .premise-text { font-size: 20px; }
+    .masthead { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .role-table { grid-template-columns: 1fr; }
+    .role-row > div:first-child { padding-bottom: 4px; }
+    .role-row > div:last-child { padding-top: 8px; border-top: none; }
+    .role-row:first-child > div:first-child { border-top: 1px solid rgba(244, 241, 234, 0.12); }
+  }
+</style>
+</head>
+<body class="grain">
+<div class="container">
+
+  <div class="masthead">
+    <span>CX System Architecture</span>
+    <span class="center">Framework Specification · 6-Stage Cycle</span>
+    <span>v1.0 · Foundation Document</span>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Six <em>Stages</em> of<br>AI Processing<span class="small">for a CX Pipeline</span></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-deck">
+        Modeled on the modern agentic dev stack — spec-driven cycles, enforced TDD, MCP servers for context, auto-issue creation from observability.
+      </p>
+      <p class="hero-subdeck">
+        A foundation specification for how Customer Experience work gets rebuilt when AI takes over the data-heavy layer. Humans retain the judgment calls; agents do the rest — under a discipline that looks far more like engineering than traditional CX operations.
+      </p>
+      <div class="hero-meta">
+        <span><strong>Framework</strong>6-Stage Cycle</span>
+        <span><strong>Scope</strong>25 CX Pipelines</span>
+        <span><strong>Role Target</strong>Senior CX Lead</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PREMISE ============ -->
+  <section class="premise">
+    <div class="premise-label">Premise</div>
+    <p class="premise-text">
+      AI absorbs the <em>data heavy-lifting, the first drafts, the continuous monitoring, the repeatable cycles</em>. The human keeps three things: <em>choices and trade-offs, meaning-making and framing, and the leadership presence that no system can generate</em>.
+    </p>
+  </section>
+
+  <!-- ============ STAGES SECTION ============ -->
+  <div>
+    <div class="stages-heading">The Framework</div>
+    <h2 class="stages-title">Six stages, built to <em>compound</em>.</h2>
+  </div>
+
+  <!-- STAGE 1 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">01</div>
+      <div class="stage-tag">Source of truth<br>versioned · reviewed</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Spec-Driven CX Definition</h3>
+      <div class="stage-analog">Analog · PRD + acceptance criteria in the repo</div>
+      <p class="stage-lede">
+        Before agents do anything, they share a single formal spec — what good CX looks like in this company, on this journey, for this segment. The spec is the source of truth every downstream automation builds on.
+      </p>
+
+      <div class="stage-section-label">Contents</div>
+      <ul>
+        <li><strong>CX Spec</strong> — North Star + principles + brand promise + non-negotiables in machine-readable format (YAML/JSON), not PDF.</li>
+        <li><strong>Journey Contracts</strong> — defined acceptance criteria per critical journey: what must happen, which metrics count as pass/fail, which touchpoints are mandatory.</li>
+        <li><strong>Persona & Segment Specs</strong> — formalised personas with triggers, jobs-to-be-done, behavioural red flags.</li>
+        <li><strong>Versioning</strong> — the CX Spec lives in a git-like system. Every change ships as a PR, reviewed by the CX Lead.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>Without a formal spec, AI agents hallucinate what "good" means and optimise against accidental proxies. The spec is the guardrail for the entire system.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 2 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">02</div>
+      <div class="stage-tag">Context on demand<br>not in the prompt</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Context MCP Layer</h3>
+      <div class="stage-analog">Analog · MCP servers for agents (GitHub, Jira, Sentry)</div>
+      <p class="stage-lede">
+        Agents don't drag context around manually or live inside one giant prompt. They fetch context through MCP servers specialised by CX domain — each with its own scope, access rules, and freshness guarantees.
+      </p>
+
+      <div class="stage-section-label">Core CX MCP Servers</div>
+      <ul>
+        <li><code>voc-mcp</code> — raw feedback: tickets, calls, reviews, surveys, app reviews.</li>
+        <li><code>journey-mcp</code> — current state of journey maps, touchpoints, funnel metrics.</li>
+        <li><code>metrics-mcp</code> — NPS/CSAT/CES, correlations, predictive scores.</li>
+        <li><code>spec-mcp</code> — the current CX Spec, principles, acceptance criteria.</li>
+        <li><code>stakeholder-mcp</code> — who owns which journey, who approves, who gets informed.</li>
+        <li><code>experiment-mcp</code> — history of A/B tests, what worked, what didn't, which hypotheses were rejected.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>Single source of truth, context efficiency, and differentiated access — write to the backlog, yes; modify the CX Spec, no.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 3 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">03</div>
+      <div class="stage-tag">Signals in<br>issues out</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Continuous Signal Ingestion & Triage</h3>
+      <div class="stage-analog">Analog · Crashlytics → auto-created issue</div>
+      <p class="stage-lede">
+        The system pulls signals from everywhere on its own, classifies and prioritises them, and files CX issues in a tracker — by analogy with how Crashlytics auto-creates issues from crashes.
+      </p>
+
+      <div class="stage-section-label">Automated process</div>
+      <ul>
+        <li><strong>Multi-source ingestion</strong> — agents pull from every channel in near real-time: tickets, calls, reviews, in-app feedback, social, NPS.</li>
+        <li><strong>Classification</strong> — journey stage, touchpoint, sentiment, intent, severity, affected segment, root-cause hypothesis.</li>
+        <li><strong>Clustering</strong> — not "1000 KYC complaints" but "three clusters: rejection wording, long wait times, document issues."</li>
+        <li><strong>Auto-issue creation</strong> — any cluster crossing <code>severity × frequency × business impact</code> becomes a CX Issue with context auto-populated: signal log, affected customers, predicted impact, similar past issues, suggested owner.</li>
+        <li><strong>Deduplication & linking</strong> — existing issues get updated, not cloned.</li>
+        <li><strong>SLA & escalation</strong> — untouched S1 issues auto-escalate.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>The CX manager stops spending 60% of their time figuring out what's happening with customers. They arrive to a prioritised backlog with context already attached.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 4 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">04</div>
+      <div class="stage-tag">Test first<br>then change</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Hypothesis-Driven Investigation</h3>
+      <div class="stage-analog">Analog · TDD — test first, then code</div>
+      <p class="stage-lede">
+        Before changing anything in a journey, the agent (or human-in-the-loop) formulates a testable hypothesis and locks in success criteria. Only then does design and implementation begin. Enforced test-first, for CX.
+      </p>
+
+      <div class="stage-section-label">Workflow</div>
+      <ul>
+        <li><strong>Hypothesis spec</strong> — drafted in the format: <em class="inline">"If we change X in journey Y, we expect metric Z to move by ≥N%, measured over period T, in segment S."</em></li>
+        <li><strong>Success criteria lock-in</strong> — pass/fail criteria are frozen before work starts. No post-hoc reinterpretation.</li>
+        <li><strong>Counter-hypothesis check</strong> — the agent must generate 2–3 alternative explanations and test them on data. Protection against overfitting to a convenient narrative.</li>
+        <li><strong>Experiment design</strong> — sample size, duration, guardrail metrics, stopping rules.</li>
+        <li><strong>Pre-mortem</strong> — what could go wrong, and what safeguards prevent it.</li>
+        <li><strong>Human gate</strong> — the CX Lead approves the hypothesis and experiment design before execution begins.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>Eliminates the classic CX bias of "we changed something and NPS went up, probably because of that." Enforced falsifiability.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 5 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">05</div>
+      <div class="stage-tag">Agents build<br>humans review</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Agentic Execution & Orchestration</h3>
+      <div class="stage-analog">Analog · Agents open PRs, run CI, merge</div>
+      <p class="stage-lede">
+        Approved hypotheses are executed by orchestrated agents, each with its own specialisation, passing work down the pipeline. Humans stay in the loop only where judgment actually matters.
+      </p>
+
+      <div class="stage-section-label">Key agents</div>
+      <ul>
+        <li><strong>Design Agent</strong> — solution variants (copy, UX flow, support script, email sequence, KB article), grounded in the CX Spec and persona context.</li>
+        <li><strong>Content Agent</strong> — final artefacts in tone-of-voice, market translations, A/B variants.</li>
+        <li><strong>Rollout Agent</strong> — feature flags, segments, staged ramp (10% → 50% → 100%), auto-rollback on guardrail trip.</li>
+        <li><strong>Comms Agent</strong> — internal communications, KB updates, internal wiki sync.</li>
+        <li><strong>Training Agent</strong> — adaptive micro-learning for frontline when needed, with comprehension checks.</li>
+        <li><strong>Orchestrator</strong> — tracks dependencies: no ship until support is trained; no wording change until compliance approves.</li>
+      </ul>
+
+      <div class="stage-section-label">Human-in-the-loop checkpoints</div>
+      <ul>
+        <li>Approval of design variants — the complex or high-stakes ones, not all.</li>
+        <li>Final sign-off for production rollout.</li>
+        <li>Sign-off on compliance-sensitive changes.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>Cycle time from "problem detected" to "solution shipped" drops from weeks to days. The CX manager operates as reviewer and orchestrator — never as executor.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 6 -->
+  <section class="stage">
+    <div class="stage-marker">
+      <div class="stage-number">06</div>
+      <div class="stage-tag">System learns<br>every cycle</div>
+    </div>
+    <div class="stage-body">
+      <h3 class="stage-title">Continuous Verification & Learning Loop</h3>
+      <div class="stage-analog">Analog · Observability + post-mortem + auto-updating runbooks</div>
+      <p class="stage-lede">
+        After rollout, the system doesn't forget. It keeps watching, comparing against the hypothesis, updating its own models, and codifying lessons learned into the spec itself.
+      </p>
+
+      <div class="stage-section-label">What runs continuously</div>
+      <ul>
+        <li><strong>Verification agents</strong> — monitor success and guardrail metrics in real time. Metric misses trigger auto-rollback or human alert.</li>
+        <li><strong>Hypothesis ledger</strong> — every experiment logged: hypothesis, setup, result, what worked, what didn't, confounders. Training data for future agents.</li>
+        <li><strong>Spec auto-update proposals</strong> — when an experiment reveals something new about a persona, journey, or principle, the agent drafts a PR to the CX Spec. Human merges.</li>
+        <li><strong>Cross-issue learning</strong> — agents spot patterns across issues: <em class="inline">"the last three wins came from onboarding flows with simplified wording — suggest a systemic review of all onboarding copy."</em></li>
+        <li><strong>Executive narrative generation</strong> — periodic summaries that are stories, not dashboards. Three changes, impact in revenue and retention, what was learned, what's next.</li>
+        <li><strong>Model retraining</strong> — sentiment, classification, and prediction models retrain on validated labels.</li>
+      </ul>
+
+      <div class="why-box">
+        <strong>Why it matters</strong>
+        <span>The system becomes compounding — each cycle faster and smarter than the last. This is what separates "we use AI" from "we built a learning machine."</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CYCLE DIAGRAM ============ -->
+  <section class="cycle-section">
+    <div class="cycle-header">
+      <h2>The <em>full cycle</em></h2>
+      <p>Six stages, feeding back into the Spec, the Ledger, and the Models — the three things that make the system get better at itself.</p>
+    </div>
+
+    <div class="cycle-svg-wrap">
+      <svg viewBox="0 0 720 640" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#13131a"/>
+          </marker>
+          <marker id="arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#c8461e"/>
+          </marker>
+        </defs>
+
+        <!-- Vertical flow, stages 1→6 -->
+        <g font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#13131a">
+
+          <!-- Stage 1 -->
+          <g>
+            <rect x="200" y="20" width="320" height="56" fill="#f4f1ea" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="44" font-weight="700" font-size="11" letter-spacing="1">01 · CX SPEC</text>
+            <text x="360" y="62" font-size="10" fill="#6b6a65" letter-spacing="0.5">source of truth · versioned</text>
+          </g>
+
+          <!-- Arrow 1→2 -->
+          <line x1="360" y1="76" x2="360" y2="108" stroke="#13131a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Stage 2 -->
+          <g>
+            <rect x="160" y="114" width="400" height="56" fill="#f4f1ea" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="138" font-weight="700" font-size="11" letter-spacing="1">02 · MCP CONTEXT LAYER</text>
+            <text x="360" y="156" font-size="10" fill="#6b6a65" letter-spacing="0.5">voc · journey · metrics · spec · stakeholder · experiment</text>
+          </g>
+
+          <!-- Arrow 2→3 -->
+          <line x1="360" y1="170" x2="360" y2="202" stroke="#13131a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Stage 3 -->
+          <g>
+            <rect x="200" y="208" width="320" height="56" fill="#f4f1ea" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="232" font-weight="700" font-size="11" letter-spacing="1">03 · CONTINUOUS INGESTION</text>
+            <text x="360" y="250" font-size="10" fill="#6b6a65" letter-spacing="0.5">auto-issue creation</text>
+          </g>
+
+          <!-- Arrow 3→4 -->
+          <line x1="360" y1="264" x2="360" y2="296" stroke="#13131a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Stage 4 -->
+          <g>
+            <rect x="180" y="302" width="360" height="56" fill="#f4f1ea" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="326" font-weight="700" font-size="11" letter-spacing="1">04 · HYPOTHESIS INVESTIGATION</text>
+            <text x="360" y="344" font-size="10" fill="#6b6a65" letter-spacing="0.5">test-first gate</text>
+          </g>
+
+          <!-- Arrow 4→5 -->
+          <line x1="360" y1="358" x2="360" y2="390" stroke="#13131a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Stage 5 -->
+          <g>
+            <rect x="180" y="396" width="360" height="56" fill="#f4f1ea" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="420" font-weight="700" font-size="11" letter-spacing="1">05 · AGENTIC EXECUTION</text>
+            <text x="360" y="438" font-size="10" fill="#6b6a65" letter-spacing="0.5">design → content → rollout</text>
+          </g>
+
+          <!-- Arrow 5→6 -->
+          <line x1="360" y1="452" x2="360" y2="484" stroke="#13131a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Stage 6 -->
+          <g>
+            <rect x="160" y="490" width="400" height="56" fill="#13131a" stroke="#13131a" stroke-width="1.5"/>
+            <text x="360" y="514" font-weight="700" font-size="11" letter-spacing="1" fill="#f4f1ea">06 · VERIFICATION & LEARNING LOOP</text>
+            <text x="360" y="532" font-size="10" fill="#e87451" letter-spacing="0.5">observability · post-mortem · retraining</text>
+          </g>
+
+          <!-- Feedback loop: from stage 6 back up the right side to stage 3 -->
+          <path d="M 560 518 Q 650 518 650 236 Q 650 220 540 236" fill="none" stroke="#c8461e" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-accent)"/>
+
+          <!-- Feedback loop label -->
+          <text x="662" y="380" font-size="9" fill="#c8461e" letter-spacing="1" font-weight="700" transform="rotate(90 662 380)">FEEDS BACK · SPEC · LEDGER · MODELS</text>
+
+          <!-- Bottom footer annotation -->
+          <text x="360" y="590" font-size="10" fill="#6b6a65" letter-spacing="1">THE SYSTEM GETS BETTER AT ITSELF</text>
+          <line x1="280" y1="608" x2="440" y2="608" stroke="#c8461e" stroke-width="1"/>
+          <text x="360" y="624" font-size="9" fill="#c8461e" letter-spacing="2" font-weight="700">↻ COMPOUNDING</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ ROLE SECTION ============ -->
+  <section class="role-section">
+    <div class="role-label">The human in the system</div>
+    <h2>Where the <em>Senior CX Manager</em> lives in all of this</h2>
+    <p class="role-lede">
+      Not collector. Not labeller. Not dashboard-builder. Architect of the system that does all three — and chief steward of its integrity.
+    </p>
+
+    <div class="role-table">
+      <div class="role-row">
+        <div class="role-zone">Owner of the CX Spec</div>
+        <div class="role-what">Writes and approves changes to the source of truth. Every PR to the spec requires their merge.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-zone">Gate on hypothesis approval</div>
+        <div class="role-what">Decides what gets tested — and what doesn't. The judgment call that protects the portfolio from wasted cycles.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-zone">Gate on high-stakes rollout</div>
+        <div class="role-what">Compliance-sensitive, brand-critical, irreversible changes. Agents don't ship these alone.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-zone">Interpreter of systemic patterns</div>
+        <div class="role-what">When the agent surfaces five related issues, the human decides whether it's tactics or a signal for a strategic rethink.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-zone">Orchestrator of humans</div>
+        <div class="role-what">Alignment with product, compliance, risk, and exec team. Politics, trust, and change management — the parts no system handles.</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      <strong>In essence</strong>
+      The Senior CX Manager becomes the <em>Tech Lead of the CX system</em>.
+      <ul class="tech-lead-list">
+        <li>Writes the spec.</li>
+        <li>Reviews the PRs — hypotheses and experiment results.</li>
+        <li>Handles complex incidents.</li>
+        <li>Develops juniors — agents and team alike.</li>
+        <li>Defends architectural decisions in front of stakeholders.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <div class="footer">
+    <span>CX System · Framework Spec</span>
+    <span>6-Stage Agentic Cycle</span>
+    <span>v1.0 · Foundation Document</span>
+  </div>
+
+</div>
+</body>
+</html>

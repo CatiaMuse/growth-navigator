@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The CX Pipeline Atlas — 25 Pipelines Across 5 Domains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #13131a;
+    --paper: #f4f1ea;
+    --paper-warm: #ebe5d8;
+    --paper-deep: #e4ddcc;
+    --rule: #2a2a33;
+    --accent: #c8461e;
+    --accent-soft: #e87451;
+    --moss: #3d4f2e;
+    --moss-soft: #6b7d58;
+    --gold: #b8941f;
+    --muted: #6b6a65;
+    --hair: rgba(19, 19, 26, 0.12);
+
+    /* Domain accent colors */
+    --d1: #c8461e;  /* Customer Insights — rust */
+    --d2: #3d4f2e;  /* CX Strategy — moss */
+    --d3: #b8941f;  /* Metrics & ROI — gold */
+    --d4: #6b4e8a;  /* Design & Innovation — plum */
+    --d5: #2d5d6e;  /* Culture & Accountability — teal */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter Tight', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+    background-image:
+      radial-gradient(circle at 15% 5%, rgba(200, 70, 30, 0.04) 0%, transparent 35%),
+      radial-gradient(circle at 85% 60%, rgba(61, 79, 46, 0.04) 0%, transparent 35%),
+      radial-gradient(circle at 30% 90%, rgba(184, 148, 31, 0.03) 0%, transparent 35%);
+    min-height: 100vh;
+  }
+
+  .grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.1 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 60px 48px 120px;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 12px 0;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .masthead .center { color: var(--ink); font-weight: 700; }
+
+  /* ============ HERO ============ */
+  .hero {
+    margin-bottom: 96px;
+    position: relative;
+  }
+
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(64px, 9vw, 140px);
+    line-height: 0.85;
+    letter-spacing: -0.035em;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero-deck {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hair);
+  }
+
+  .hero-deck-lead {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .hero-deck-lead em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-deck-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hair);
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ============ TAXONOMY ============ */
+  .taxonomy {
+    margin-bottom: 120px;
+  }
+
+  .section-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+    max-width: 900px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-deck {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  /* Domain overview table */
+  .domain-overview {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .domain-row {
+    display: grid;
+    grid-template-columns: 80px 2fr 3fr 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--hair);
+    align-items: baseline;
+  }
+
+  .domain-row:last-child { border-bottom: none; }
+
+  .domain-num {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .domain-row[data-domain="1"] .domain-num { color: var(--d1); }
+  .domain-row[data-domain="2"] .domain-num { color: var(--d2); }
+  .domain-row[data-domain="3"] .domain-num { color: var(--d3); }
+  .domain-row[data-domain="4"] .domain-num { color: var(--d4); }
+  .domain-row[data-domain="5"] .domain-num { color: var(--d5); }
+
+  .domain-name {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .domain-pipelines-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .domain-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .domain-weight {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .domain-row[data-domain="1"] .domain-weight { color: var(--d1); }
+  .domain-row[data-domain="2"] .domain-weight { color: var(--d2); }
+  .domain-row[data-domain="3"] .domain-weight { color: var(--d3); }
+  .domain-row[data-domain="4"] .domain-weight { color: var(--d4); }
+  .domain-row[data-domain="5"] .domain-weight { color: var(--d5); }
+
+  .domain-weight-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  /* ============ DOMAIN SECTIONS ============ */
+  .domain-section {
+    margin-bottom: 120px;
+    scroll-margin-top: 40px;
+  }
+
+  .domain-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid var(--ink);
+    align-items: end;
+  }
+
+  .domain-header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  .domain-header-num {
+    font-family: 'Fraunces', serif;
+    font-size: 160px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.8;
+  }
+
+  .domain-section[data-domain="1"] .domain-header-num { color: var(--d1); }
+  .domain-section[data-domain="2"] .domain-header-num { color: var(--d2); }
+  .domain-section[data-domain="3"] .domain-header-num { color: var(--d3); }
+  .domain-section[data-domain="4"] .domain-header-num { color: var(--d4); }
+  .domain-section[data-domain="5"] .domain-header-num { color: var(--d5); }
+
+  .domain-header-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .domain-header-meta strong {
+    display: block;
+    color: var(--ink);
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .domain-header-title {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .domain-header-desc {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 560px;
+  }
+
+  /* ============ PIPELINE CARDS ============ */
+  .pipelines {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .pipeline-card {
+    background: var(--paper-warm);
+    padding: 28px 28px 24px;
+    position: relative;
+    border-top: 3px solid var(--accent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pipeline-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(19, 19, 26, 0.08);
+  }
+
+  .domain-section[data-domain="1"] .pipeline-card { border-top-color: var(--d1); }
+  .domain-section[data-domain="2"] .pipeline-card { border-top-color: var(--d2); }
+  .domain-section[data-domain="3"] .pipeline-card { border-top-color: var(--d3); }
+  .domain-section[data-domain="4"] .pipeline-card { border-top-color: var(--d4); }
+  .domain-section[data-domain="5"] .pipeline-card { border-top-color: var(--d5); }
+
+  .pipeline-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .domain-section[data-domain="1"] .pipeline-id { color: var(--d1); }
+  .domain-section[data-domain="2"] .pipeline-id { color: var(--d2); }
+  .domain-section[data-domain="3"] .pipeline-id { color: var(--d3); }
+  .domain-section[data-domain="4"] .pipeline-id { color: var(--d4); }
+  .domain-section[data-domain="5"] .pipeline-id { color: var(--d5); }
+
+  .pipeline-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .pipeline-consolidates {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 18px;
+    flex-grow: 1;
+  }
+
+  .pipeline-consolidates em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .pipeline-split {
+    border-top: 1px dashed var(--hair);
+    padding-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .split-line {
+    font-size: 12.5px;
+    line-height: 1.5;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .split-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    min-width: 28px;
+    padding-top: 1px;
+  }
+
+  .split-icon.auto { color: var(--moss); }
+  .split-icon.human { color: var(--accent); }
+
+  .split-text {
+    flex: 1;
+  }
+
+  /* Featured card (Pipeline 1.1 — already built) */
+  .pipeline-card.featured {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .pipeline-card.featured .pipeline-consolidates,
+  .pipeline-card.featured .split-text {
+    color: rgba(244, 241, 234, 0.88);
+  }
+
+  .pipeline-card.featured .pipeline-consolidates em {
+    color: var(--accent-soft);
+  }
+
+  .pipeline-card.featured .pipeline-id {
+    color: var(--accent-soft);
+  }
+
+  .pipeline-card.featured .pipeline-split {
+    border-top-color: rgba(244, 241, 234, 0.15);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent-soft);
+    padding: 3px 8px;
+    border: 1px solid var(--accent-soft);
+  }
+
+  /* ============ SHIFT SECTION ============ */
+  .shift-section {
+    margin: 120px -48px 0;
+    padding: 80px 64px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+
+  .shift-section::before {
+    content: '↻';
+    position: absolute;
+    top: 32px;
+    right: 48px;
+    font-family: 'Fraunces', serif;
+    font-size: 96px;
+    color: var(--accent-soft);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .shift-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 20px;
+  }
+
+  .shift-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    max-width: 900px;
+  }
+
+  .shift-title em {
+    font-style: italic;
+    color: var(--accent-soft);
+  }
+
+  .shift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 56px;
+  }
+
+  .shift-column h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(244, 241, 234, 0.2);
+  }
+
+  .shift-column p {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+    color: rgba(244, 241, 234, 0.9);
+  }
+
+  .shift-column p em {
+    font-style: italic;
+    color: var(--accent-soft);
+  }
+
+  .shift-numbers {
+    list-style: none;
+    padding: 0;
+    counter-reset: shift;
+  }
+
+  .shift-numbers li {
+    counter-increment: shift;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 18px 0 18px 52px;
+    border-bottom: 1px dashed rgba(244, 241, 234, 0.15);
+    position: relative;
+    color: rgba(244, 241, 234, 0.92);
+  }
+
+  .shift-numbers li::before {
+    content: counter(shift, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-soft);
+    letter-spacing: 0.1em;
+  }
+
+  .shift-numbers li:last-child { border-bottom: none; }
+
+  .shift-numbers li strong {
+    display: block;
+    font-style: italic;
+    color: var(--accent-soft);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .shift-closing {
+    margin-top: 56px;
+    padding: 32px 36px;
+    background: rgba(200, 70, 30, 0.15);
+    border-left: 3px solid var(--accent-soft);
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--paper);
+    max-width: 900px;
+  }
+
+  .shift-closing strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-soft);
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============ ANIMATIONS ============ */
+  .pipeline-card {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: rise 0.5s ease-out forwards;
+  }
+
+  .pipelines .pipeline-card:nth-child(1) { animation-delay: 0.05s; }
+  .pipelines .pipeline-card:nth-child(2) { animation-delay: 0.1s; }
+  .pipelines .pipeline-card:nth-child(3) { animation-delay: 0.15s; }
+  .pipelines .pipeline-card:nth-child(4) { animation-delay: 0.2s; }
+  .pipelines .pipeline-card:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .container { padding: 32px 24px 80px; }
+    .hero-deck { grid-template-columns: 1fr; gap: 32px; }
+    .domain-row { grid-template-columns: 48px 1fr; gap: 16px; row-gap: 4px; }
+    .domain-row .domain-num { font-size: 28px; grid-row: span 3; }
+    .domain-row .domain-desc, .domain-row .domain-weight { grid-column: 2; }
+    .domain-row .domain-weight { text-align: left; font-size: 14px; }
+    .domain-header { grid-template-columns: 1fr; gap: 24px; }
+    .domain-header-num { font-size: 96px; }
+    .domain-header-title { font-size: 32px; }
+    .shift-section { margin: 64px -24px 0; padding: 48px 32px; }
+    .shift-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pipelines { grid-template-columns: 1fr; }
+    .masthead { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .hero-stats { gap: 24px; }
+    .stat-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body class="grain">
+<div class="container">
+
+  <div class="masthead">
+    <span>CX System Architecture</span>
+    <span class="center">The Pipeline Atlas · 25 Pipelines</span>
+    <span>v1.0 · Master Collection</span>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-kicker">Collection · 25 Pipelines · 5 Domains</div>
+    <h1>The <em>CX Pipeline</em><br>Atlas</h1>
+
+    <div class="hero-deck">
+      <p class="hero-deck-lead">
+        The complete map of how Customer Experience work gets rebuilt when <em>AI takes the data-heavy layer</em> and humans take the judgment calls.
+      </p>
+      <p class="hero-deck-body">
+        Twenty-five pipelines, organised across the five CCXP domains, each one a candidate for the 6-stage agentic framework. Together they describe a CX function that operates more like a modern engineering system than a traditional services organisation — compounding instead of consuming, shipping instead of reporting.
+      </p>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">25</div>
+        <div class="stat-label">Pipelines</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Domains</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Stages per pipeline</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Human ownership zones</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAXONOMY / OVERVIEW ============ -->
+  <section class="taxonomy">
+    <div class="section-kicker">Taxonomy</div>
+    <h2 class="section-title">Five domains, weighted by <em>how CCXP sees the work</em>.</h2>
+    <p class="section-deck">
+      The percentages mirror the CCXP competency weights — how much of a senior CX professional's mandate each domain traditionally owns. The pipeline count is how we've decomposed each into independently automatable, agentic units.
+    </p>
+
+    <div class="domain-overview">
+      <div class="domain-row" data-domain="1">
+        <div class="domain-num">01</div>
+        <div>
+          <div class="domain-name">Customer Insights & Understanding</div>
+          <div class="domain-pipelines-count">5 pipelines · <a href="#d1" style="color:inherit;text-decoration:underline;">jump ↓</a></div>
+        </div>
+        <div class="domain-desc">
+          Everything from signal capture to insight activation. Where the VoC infrastructure lives, where pain points surface, where extreme-user interpretation stays human.
+        </div>
+        <div>
+          <div class="domain-weight">22%</div>
+          <div class="domain-weight-label">CCXP weight</div>
+        </div>
+      </div>
+
+      <div class="domain-row" data-domain="2">
+        <div class="domain-num">02</div>
+        <div>
+          <div class="domain-name">Customer Experience Strategy</div>
+          <div class="domain-pipelines-count">5 pipelines · <a href="#d2" style="color:inherit;text-decoration:underline;">jump ↓</a></div>
+        </div>
+        <div class="domain-desc">
+          Translating corporate strategy into CX vision, maturity assessment, portfolio design, governance, and the cascade. The stage where trade-offs live.
+        </div>
+        <div>
+          <div class="domain-weight">20%</div>
+          <div class="domain-weight-label">CCXP weight</div>
+        </div>
+      </div>
+
+      <div class="domain-row" data-domain="3">
+        <div class="domain-num">03</div>
+        <div>
+          <div class="domain-name">Metrics, Measurements & ROI</div>
+          <div class="domain-pipelines-count">5 pipelines · <a href="#d3" style="color:inherit;text-decoration:underline;">jump ↓</a></div>
+        </div>
+        <div class="domain-desc">
+          KPI selection, data integration, predictive modelling, executive reporting, anti-gaming governance. The domain that earns CX its seat at the financial table.
+        </div>
+        <div>
+          <div class="domain-weight">20%</div>
+          <div class="domain-weight-label">CCXP weight</div>
+        </div>
+      </div>
+
+      <div class="domain-row" data-domain="4">
+        <div class="domain-num">04</div>
+        <div>
+          <div class="domain-name">Design, Implementation & Innovation</div>
+          <div class="domain-pipelines-count">5 pipelines · <a href="#d4" style="color:inherit;text-decoration:underline;">jump ↓</a></div>
+        </div>
+        <div class="domain-desc">
+          Gap analysis, prioritisation, design thinking, experimentation, closed-loop standardisation. Where hypotheses become shipped changes.
+        </div>
+        <div>
+          <div class="domain-weight">19%</div>
+          <div class="domain-weight-label">CCXP weight</div>
+        </div>
+      </div>
+
+      <div class="domain-row" data-domain="5">
+        <div class="domain-num">05</div>
+        <div>
+          <div class="domain-name">Culture & Accountability</div>
+          <div class="domain-pipelines-count">5 pipelines · <a href="#d5" style="color:inherit;text-decoration:underline;">jump ↓</a></div>
+        </div>
+        <div class="domain-desc">
+          Culture diagnostics, decision-rights, recognition, hiring and EX, cross-functional leadership. The most stubbornly human domain — and the most important to get right.
+        </div>
+        <div>
+          <div class="domain-weight">19%</div>
+          <div class="domain-weight-label">CCXP weight</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAIN 1: CUSTOMER INSIGHTS ============ -->
+  <section class="domain-section" data-domain="1" id="d1">
+    <div class="domain-header">
+      <div class="domain-header-left">
+        <div class="domain-header-num">01</div>
+        <div class="domain-header-meta">
+          <strong>Domain</strong>
+          22% · CCXP weight<br>
+          5 pipelines · 1.1 → 1.5
+        </div>
+      </div>
+      <div>
+        <h2 class="domain-header-title">Customer Insights &<br>Understanding</h2>
+        <p class="domain-header-desc">Signal capture, journey mapping, discovery, synthesis, activation — the pipeline chain that turns raw noise into decisions.</p>
+      </div>
+    </div>
+
+    <div class="pipelines">
+      <div class="pipeline-card featured">
+        <span class="featured-badge">SPEC'D</span>
+        <div class="pipeline-id">PIPELINE 1.1</div>
+        <h3 class="pipeline-title">VoC Infrastructure & Signal Capture</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Assessment of data capture infrastructure, solicited/unsolicited VoC program design, multi-channel feedback collection.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-discovery of CX sources, ingestion/transcription, embedded micro-surveys with dynamic logic.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Deciding which signals are strategically important; setting ethical boundaries for collection.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 1.2</div>
+        <h3 class="pipeline-title">Journey & Touchpoint Mapping</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Identification of customer/employee touchpoints, journey mapping, persona mapping.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-extraction of touchpoints from CRM/logs/tickets; living journey maps; proto-personas from behavioral clusters.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Interpreting moments of truth, cross-cultural nuance, validating what's truly critical (vs statistically visible).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 1.3</div>
+        <h3 class="pipeline-title">Qualitative Discovery & Extreme User Research</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          In-depth interviews, observation, outlier research, behavioral science.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-coding of transcripts, quote extraction, theme clustering.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Conducting the interviews, reading emotions, interpreting extreme-user workarounds as innovation opportunities.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 1.4</div>
+        <h3 class="pipeline-title">Cross-Source Synthesis & Pain Point Analysis</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Analysis of VoC across sources, root cause analysis, identification of pain points and opportunities.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Sentiment/intent/driver analysis across channels, mixed-methods synthesis, auto-generated insight summaries.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Selecting 5–10 strategically important insight statements; linking need → behavior → business risk.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 1.5</div>
+        <h3 class="pipeline-title">Insight Packaging & Stakeholder Activation</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Formulating "so what?" for each insight, creating insight packs, aligning product/ops/marketing on what changes.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Decision-oriented narratives, auto-formatting per audience, distribution and reminders.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Stakeholder negotiation, political navigation, selling the insight, securing ownership of changes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAIN 2: CX STRATEGY ============ -->
+  <section class="domain-section" data-domain="2" id="d2">
+    <div class="domain-header">
+      <div class="domain-header-left">
+        <div class="domain-header-num">02</div>
+        <div class="domain-header-meta">
+          <strong>Domain</strong>
+          20% · CCXP weight<br>
+          5 pipelines · 2.1 → 2.5
+        </div>
+      </div>
+      <div>
+        <h2 class="domain-header-title">Customer Experience<br>Strategy</h2>
+        <p class="domain-header-desc">Corporate-to-CX translation, maturity, portfolio, governance, cascade. The domain where trade-offs get made.</p>
+      </div>
+    </div>
+
+    <div class="pipelines">
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 2.1</div>
+        <h3 class="pipeline-title">Corporate-to-CX Strategy Translation</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Extracting key themes from corporate strategy, defining CX North Star, alignment with brand values.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-drafted CX strategy from corporate docs, VoC, and benchmarks; semi-automated mapping of strategy → CX objectives.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Articulating CX vision and principles; choice of strategic bets; engaging the executive suite.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 2.2</div>
+        <h3 class="pipeline-title">CX Maturity & Gap Assessment</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          CX-specific SWOT, maturity assessment, identification of capability gaps.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">LLM-based maturity self-assessment from docs/KPIs; living maturity map with capability investment recommendations.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Interpreting political context, assessing organisational risk tolerance, deciding where to stretch capacity.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 2.3</div>
+        <h3 class="pipeline-title">Initiative Portfolio Design & Prioritisation</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Selection of 3–5 strategic CX initiatives, lifecycle-specific interventions, capacity check.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-generated initiative lists with value/effort estimates; portfolio optimiser re-prioritising as constraints change.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Final trade-off decisions; "we go here, we don't go there" when functions conflict; balancing regulatory risk.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 2.4</div>
+        <h3 class="pipeline-title">Governance & Operating Model Design</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Journey ownership definition, funding model, role of central CX vs business units, escalation mechanisms.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Drafting governance documents, RACI matrices, tracking commitments.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Building accountability, budget negotiations, resolving inter-functional conflicts, selecting owner roles.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 2.5</div>
+        <h3 class="pipeline-title">Strategy Communication & Cascade</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Communication plan, cascading strategy into KPIs across functions, executive engagement ritual.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-drafted comms (decks, memos, FAQs); adaptive internal comms bot; executive-tailored briefs.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Live presentations, "hearts and minds" storytelling, handling objections, political work with stakeholders.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAIN 3: METRICS & ROI ============ -->
+  <section class="domain-section" data-domain="3" id="d3">
+    <div class="domain-header">
+      <div class="domain-header-left">
+        <div class="domain-header-num">03</div>
+        <div class="domain-header-meta">
+          <strong>Domain</strong>
+          20% · CCXP weight<br>
+          5 pipelines · 3.1 → 3.5
+        </div>
+      </div>
+      <div>
+        <h2 class="domain-header-title">Metrics, Measurements<br>& ROI</h2>
+        <p class="domain-header-desc">KPI architecture, data integration, predictive modelling, executive reporting, anti-gaming governance. The domain that earns CX its financial credibility.</p>
+      </div>
+    </div>
+
+    <div class="pipelines">
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 3.1</div>
+        <h3 class="pipeline-title">Metrics Architecture & KPI Selection</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Inventory of existing metrics, classification (perception/behavioral/financial), selection of 3–5 KPIs with formulas and owners.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-building metric frameworks; classification; suggestions on which metrics correlate with outcomes.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Choosing which 3–5 metrics become KPIs — a strategic decision; defending the choice to C-level.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 3.2</div>
+        <h3 class="pipeline-title">Data Integration & Single Customer View</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Data strategy, single customer view, data taxonomy, data roadmap.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-assisted field mapping, cleansing, deduplication; near real-time CX data hub; unified metric layer linking to financials.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Data ownership decisions, privacy/GDPR/PSD2 compliance calls, priorities for closing gaps.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 3.3</div>
+        <h3 class="pipeline-title">Predictive Analytics & Driver Modelling</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Analysis of 12–24 months history, correlations of metrics with outcomes, predictive models for churn/upsell/CSAT.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Cluster analysis, driver modelling, trend detection; predictive models with auto-retraining; data mining.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Interpreting causation vs correlation; checking models for overfitting; deciding which predictions warrant action.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 3.4</div>
+        <h3 class="pipeline-title">CX Cockpit & Executive Reporting</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Dashboards with KPIs + diagnostic metrics, executive reports, conversational BI.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-generated reports, executive summaries, slide decks; self-updating CX cockpit with narrative explanations.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">ROI narrative for board/investors; translating data into a business story that moves capital.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 3.5</div>
+        <h3 class="pipeline-title">Metrics Governance & Anti-Gaming</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Governance definition, anti-gaming rules, quarterly metrics review, target setting.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Change logs of metric definitions, alerts on broken definitions; auto-flagging of misuse.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Setting realistic targets; risk tolerance and anti-gaming policies; linking metrics to incentives — or deliberately not.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAIN 4: DESIGN & INNOVATION ============ -->
+  <section class="domain-section" data-domain="4" id="d4">
+    <div class="domain-header">
+      <div class="domain-header-left">
+        <div class="domain-header-num">04</div>
+        <div class="domain-header-meta">
+          <strong>Domain</strong>
+          19% · CCXP weight<br>
+          5 pipelines · 4.1 → 4.5
+        </div>
+      </div>
+      <div>
+        <h2 class="domain-header-title">Design, Implementation<br>& Innovation</h2>
+        <p class="domain-header-desc">Gap analysis, prioritisation, design thinking, experimentation, closed-loop standardisation. Where hypotheses turn into shipped changes.</p>
+      </div>
+    </div>
+
+    <div class="pipelines">
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 4.1</div>
+        <h3 class="pipeline-title">Gap Analysis & Root Cause Identification</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Current vs desired gap analysis, root cause via fishbone/5 whys, quantification of impact/effort.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI process mining, bottleneck identification, auto-detection of journey drop-offs; impact/frequency/effort scoring.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Framing the problem, selecting the right hypothesis, interpreting political/cultural root causes.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 4.2</div>
+        <h3 class="pipeline-title">Initiative Prioritisation & Squad Formation</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Pareto/priority matrix, selection of 3–5 issues, formation of cross-functional squad.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-prioritised backlogs, "opportunity radar" continuously feeding the backlog.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Final trade-off decisions; forming squads, selecting leaders; setting time-bounded mandates.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 4.3</div>
+        <h3 class="pipeline-title">Design Thinking & Prototyping Cycle</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Empathise/reframe/ideate/prototype, desirability-first, human-centered design.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-assisted ideation, service blueprints, generation of variants for copy and UI mockups.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Framing design principles and experience vision; values, ethics, brand nuance; deep qualitative empathy.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 4.4</div>
+        <h3 class="pipeline-title">Experimentation & Test-and-Learn Infrastructure</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          PoC testing, Deming cycle/DMAIC Improve, A/B testing infrastructure, hypothesis-driven loops.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Continuous experimentation platforms, auto-launch A/B tests, rollout winners; build-measure-learn loops.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Hypothesis formulation, strategic interpretation of results, rollout/rollback decisions.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 4.5</div>
+        <h3 class="pipeline-title">Closed-Loop System & Standardisation</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Closing the loop (capture → act → inform → track), standardising solutions into playbooks, controls and monitoring.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-mediated integration of VoC/ticketing/analytics; orchestration layer routing issues; resolution tracking.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Personal follow-ups in complex cases; training people on new playbooks; supervisory coaching.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOMAIN 5: CULTURE & ACCOUNTABILITY ============ -->
+  <section class="domain-section" data-domain="5" id="d5">
+    <div class="domain-header">
+      <div class="domain-header-left">
+        <div class="domain-header-num">05</div>
+        <div class="domain-header-meta">
+          <strong>Domain</strong>
+          19% · CCXP weight<br>
+          5 pipelines · 5.1 → 5.5
+        </div>
+      </div>
+      <div>
+        <h2 class="domain-header-title">Culture &<br>Accountability</h2>
+        <p class="domain-header-desc">Culture diagnostics, decision-rights, recognition, hiring and EX, cross-functional leadership. The most stubbornly human domain — and the most consequential.</p>
+      </div>
+    </div>
+
+    <div class="pipelines">
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 5.1</div>
+        <h3 class="pipeline-title">Culture Diagnostic & Blocker Identification</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Interviews/pulse surveys, identification of 3–5 cultural blockers, culture health monitoring.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI analysis of internal surveys/comms for cultural signals; culture health dashboards; early-warning indicators.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Defining core CX principles and cultural non-negotiables — a leadership choice about values and behaviors.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 5.2</div>
+        <h3 class="pipeline-title">Decision Rights & Empowerment Framework</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Clarifying decision rights, "surprise and delight" budget, boundaries + permission to use judgment.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Nudges in CRM/CS tools, "next best action" suggestions; AI-drafted playbooks.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Actually "giving permission"; modeling behavior; handling edge cases; building trust — fundamentally human work.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 5.3</div>
+        <h3 class="pipeline-title">Recognition & Reward Redesign</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Rewards for CX behaviors (not just output), recognition programs, role models.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">Auto-identification of CX role models via metrics/feedback; dynamic recognition programs; AI-crafted internal stories.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Designing a fair system (to avoid Golem effect, nomination bias); live recognition in key moments.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 5.4</div>
+        <h3 class="pipeline-title">Hiring, Training & Employee Experience</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Hiring by CX competencies, onboarding, coaching, EX metrics on dashboards, EX → CX linkage.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-screening of CX competencies, adaptive onboarding, personalised learning paths from VoC/performance data.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">Interviewing soft skills; coaching on expectation effects (Pygmalion/Golem); developing managers as role models.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-card">
+        <div class="pipeline-id">PIPELINE 5.5</div>
+        <h3 class="pipeline-title">Cross-Functional Leadership & Change Management</h3>
+        <p class="pipeline-consolidates">
+          <em>Consolidates</em>
+          Cross-functional CX teams with clear charters, change management, stakeholder engagement, internal storytelling.
+        </p>
+        <div class="pipeline-split">
+          <div class="split-line">
+            <span class="split-icon auto">AUTO</span>
+            <span class="split-text">AI-generated change plans, RACI, comms calendars; change-orchestration copilots; AI-drafted narratives per audience.</span>
+          </div>
+          <div class="split-line">
+            <span class="split-icon human">HUMAN</span>
+            <span class="split-text">"Hearts and minds" leadership; politics and informal leaders; personal trust in difficult change moments.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE SHIFT ============ -->
+  <section class="shift-section">
+    <div class="shift-kicker">The shift</div>
+    <h2 class="shift-title">Looking across all 25 pipelines, <em>one pattern emerges</em>.</h2>
+
+    <div class="shift-grid">
+      <div class="shift-column">
+        <h3>What AI absorbs</h3>
+        <p>
+          <em>Data heavy-lifting</em> — ingestion, classification, clustering, mapping, deduplication. The work that scales linearly with data volume.
+        </p>
+        <p>
+          <em>First-draft generation</em> — strategies, plans, reports, comms, playbooks, narratives. The blank-page work.
+        </p>
+        <p>
+          <em>Continuous monitoring</em> — dashboards, drift detection, anomaly flags, guardrail tracking. The always-on surface.
+        </p>
+        <p>
+          <em>Repeatable cycles</em> — re-prioritisation, model retraining, dashboard regeneration, experiment orchestration. The rhythmic operational layer.
+        </p>
+      </div>
+
+      <div class="shift-column">
+        <h3>What the human keeps</h3>
+        <ol class="shift-numbers">
+          <li>
+            <strong>Choices & trade-offs</strong>
+            Which insights matter. Which 3–5 initiatives ship. Which metrics become KPIs. Which cultural non-negotiables hold.
+          </li>
+          <li>
+            <strong>Meaning-making & framing</strong>
+            CX vision, design principles, insight narratives, ROI storytelling for the board. The work of interpretation.
+          </li>
+          <li>
+            <strong>Human change management</strong>
+            Negotiation, politics, trust, "hearts and minds," live leadership presence in the moments that matter.
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="shift-closing">
+      <strong>In essence:</strong> the Senior CX Manager of 2026+ stops being an operator of metrics and research and becomes an <em>AI system orchestrator, strategist, and diplomat</em>. The role gets smaller in scope, heavier in judgment, and infinitely more leveraged.
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <div class="footer">
+    <span>CX System · Pipeline Atlas</span>
+    <span>25 Pipelines · 5 Domains</span>
+    <span>v1.0 · Master Collection</span>
+  </div>
+
+</div>
+</body>
+</html>
